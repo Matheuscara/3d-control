@@ -11,8 +11,10 @@ import { ProductsModule } from './products/products.module';
 import { SettingsModule } from './settings/settings.module';
 import { OrdersModule } from './orders/orders.module';
 
+import { ConfigModule } from '@nestjs/config';
+
 @Module({
-  imports: [PrismaModule, PricingModule, ClientsModule, AssetsModule, FilamentsModule, PrintersModule, ProductsModule, SettingsModule, OrdersModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, PricingModule, ClientsModule, AssetsModule, FilamentsModule, PrintersModule, ProductsModule, SettingsModule, OrdersModule],
   controllers: [AppController],
   providers: [AppService],
 })

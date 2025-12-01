@@ -107,6 +107,8 @@ model Client {
 model Order {
   id                      String   @id @default(uuid())
   tenant_id               String
+  created_at              DateTime @default(now())
+  status                  String   @default("PENDING")
   
   // Relacionamentos Principais
   client_id               String

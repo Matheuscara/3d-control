@@ -1,0 +1,30 @@
+{
+    "/settings": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/printers": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/assets": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/filaments": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/products": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/clients": {
+        "target": "http://localhost:3000",
+        "secure": false
+    },
+    "/orders": {
+        "target": "http://localhost:3000",
+        "secure": false
+    }
+}

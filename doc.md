@@ -4,10 +4,10 @@
 
 O objetivo é transformar planilhas interconectadas em uma aplicação web reativa.
 
-  * **Frontend:** **Angular 21**.
+  * **Frontend:** **Angular 20**.
       * **Core Feature:** Uso intensivo de **Signals** para recálculo de preço em tempo real (simulando a reatividade do Excel).
       * **Architecture:** Standalone Components, Zoneless (se possível para performance máxima).
-      * **UI Lib:** Angular Material ou PrimeNG (para tabelas ricas de dados).
+      * **UI Lib:** Angular PrimeNG (para tabelas ricas de dados).
   * **Backend:** **NestJS**.
       * **ORM:** Prisma ou TypeORM (PostgreSQL).
   * **Banco de Dados:** PostgreSQL.
@@ -232,7 +232,7 @@ calculateOrderPricing(
 
 -----
 
-## 4\. Frontend - Angular 21 (A Mágica da Interface)
+## 4\. Frontend - Angular 20 (A Mágica da Interface)
 
 Para a interface, usaremos a nova feature de **Signals** para que o usuário sinta que está usando uma planilha superpoderosa.
 
@@ -252,7 +252,7 @@ Imagine uma tela dividida em duas colunas:
 Este painel atualiza em tempo real sem clicar em "Calcular".
 
 ```typescript
-// Exemplo conceitual Angular 21
+// Exemplo conceitual Angular 20
 export class CalculatorComponent {
   // Inputs
   selectedProduct = signal<Product | null>(null);

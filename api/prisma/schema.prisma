@@ -79,7 +79,7 @@ model ProductMaterial {
   material_type       String
   required_weight_grams Decimal @db.Decimal(10, 2)
   product             Product @relation(fields: [product_id], references: [id])
-  
+
   @@map("product_materials")
 }
 
@@ -89,7 +89,7 @@ model ProductAddon {
   name       String
   cost_unit  Decimal
   product    Product @relation(fields: [product_id], references: [id])
-  
+
   @@map("product_addons")
 }
 
@@ -109,24 +109,24 @@ model Order {
   tenant_id               String
   created_at              DateTime @default(now())
   status                  String   @default("PENDING")
-  
+
   // Relacionamentos Principais
   client_id               String
   product_id              String
   printer_id              String
-  
+
   // Configuração da Venda
   platform_name           String   // Ex: Shopee, ML
   platform_fee_percent    Decimal  @db.Decimal(10, 2) // Ex: 14.00
   scrap_rate_percent      Decimal  @db.Decimal(10, 2) // Ex: 0.10 (10%)
-  
+
   // --- DADOS REAIS DE EXECUÇÃO (O que realmente gastou) ---
   print_time_minutes      Int      // Tempo real da impressão
-  
+
   // Slot 1
   filament_1_id           String?
   filament_1_grams_used   Decimal? @default(0) @db.Decimal(10, 2)
-  
+
   // Slot 2
   filament_2_id           String?
   filament_2_grams_used   Decimal? @default(0) @db.Decimal(10, 2)
@@ -138,14 +138,14 @@ model Order {
   // Slot 4
   filament_4_id           String?
   filament_4_grams_used   Decimal? @default(0) @db.Decimal(10, 2)
-  
+
   // --- SNAPSHOT FINANCEIRO (Valores congelados no momento da venda) ---
   final_material_cost     Decimal  @db.Decimal(10, 2)
   final_energy_cost       Decimal  @db.Decimal(10, 2)
   final_depreciation_cost Decimal  @db.Decimal(10, 2)
   final_labor_cost        Decimal  @db.Decimal(10, 2)
   final_platform_fee      Decimal  @db.Decimal(10, 2)
-  
+
   // Totais
   selling_price           Decimal  @db.Decimal(10, 2)
   net_profit              Decimal  @db.Decimal(10, 2)
@@ -155,6 +155,6 @@ model Order {
   product                 Product  @relation(fields: [product_id], references: [id])
   // Opcional: Adicionar relação com Printer se quiser
   // printer              Printer  @relation(fields: [printer_id], references: [id])
-  
+
   @@map("orders")
 }

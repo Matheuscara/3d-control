@@ -1,4 +1,9 @@
 import { execSync } from 'child_process';
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+// Carregar variáveis de ambiente do arquivo .env
+config({ path: resolve(__dirname, '../.env') });
 
 const seedFiles = [
   'seed-settings.ts', // 1º - Configurações globais
@@ -15,7 +20,10 @@ async function runAllSeeds() {
   for (const file of seedFiles) {
     console.log(`📦 Rodando: ${file}`);
     try {
-      execSync(`ts-node prisma/${file}`, { stdio: 'inherit' });
+      execSync(`ts-node prisma/${file}`, {
+        stdio: 'inherit',
+        env: process.env
+      });
       console.log(`✅ ${file} concluído!\n`);
     } catch (error) {
       console.error(`❌ Erro ao executar ${file}`);

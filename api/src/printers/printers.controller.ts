@@ -1,11 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { PrintersService } from './printers.service';
 import { CreatePrinterDto } from './dto/create-printer.dto';
 import { UpdatePrinterDto } from './dto/update-printer.dto';
+import { GetUsageStatsDto } from './dto/get-usage-stats.dto';
 
 @Controller('printers')
 export class PrintersController {
-  constructor(private readonly printersService: PrintersService) { }
+  constructor(private readonly printersService: PrintersService) {}
+
+  @Get('stats/usage')
+  getUsageStats(@Query() query: GetUsageStatsDto) {
+    // tenant_id will be added later via AuthGuard or decorator
+    const tenant_id = 'user-admin-id-123';
+    return this.printersService.getUsageStats(tenant_id, query);
+  }
 
   @Post()
   create(@Body() createPrinterDto: CreatePrinterDto) {

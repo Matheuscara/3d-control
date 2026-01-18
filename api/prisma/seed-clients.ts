@@ -1,4 +1,9 @@
 import { PrismaClient } from '@prisma/client';
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+// Carregar variáveis de ambiente
+config({ path: resolve(__dirname, '../.env') });
 
 const prisma = new PrismaClient();
 

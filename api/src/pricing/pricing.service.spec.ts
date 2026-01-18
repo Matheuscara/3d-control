@@ -1,5 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PricingService, FilamentWithUsage, ProductWithAddons } from './pricing.service';
+import {
+  PricingService,
+  FilamentWithUsage,
+  ProductWithAddons,
+} from './pricing.service';
 import { Prisma } from '@prisma/client';
 
 describe('PricingService', () => {
@@ -18,14 +22,14 @@ describe('PricingService', () => {
   });
 
   it('should calculate filament cost per gram correctly', () => {
-    const cost = service.calculateFilamentCostPerGram(88.10, 7.50, 1000);
+    const cost = service.calculateFilamentCostPerGram(88.1, 7.5, 1000);
     expect(cost).toBeCloseTo(0.0956);
   });
 
   it('should calculate machine hourly cost correctly', () => {
     const printer = {
       power_consumption_watts: 170,
-      purchase_price: new Prisma.Decimal(3298.00),
+      purchase_price: new Prisma.Decimal(3298.0),
       lifespan_hours: 8000,
     } as any;
 
@@ -44,28 +48,28 @@ describe('PricingService', () => {
     const product: ProductWithAddons = {
       base_print_time_minutes: 600, // 10 hours
       preparation_time_minutes: 30, // 0.5 hours
-      packaging_cost: new Prisma.Decimal(2.00),
-      addons: [{ cost_unit: new Prisma.Decimal(0.50) }] as any,
+      packaging_cost: new Prisma.Decimal(2.0),
+      addons: [{ cost_unit: new Prisma.Decimal(0.5) }] as any,
     } as any;
 
     const filaments: FilamentWithUsage[] = [
       {
-        purchase_price: new Prisma.Decimal(88.10),
-        shipping_cost: new Prisma.Decimal(7.50),
+        purchase_price: new Prisma.Decimal(88.1),
+        shipping_cost: new Prisma.Decimal(7.5),
         weight_grams: 1000,
         grams_used: 100,
-      } as any
+      } as any,
     ];
 
     const printer = {
       power_consumption_watts: 170,
-      purchase_price: new Prisma.Decimal(3298.00),
+      purchase_price: new Prisma.Decimal(3298.0),
       lifespan_hours: 8000,
     } as any;
 
     const settings = {
       electricity_cost_kwh: new Prisma.Decimal(0.96),
-      labor_rate_hourly: new Prisma.Decimal(10.00),
+      labor_rate_hourly: new Prisma.Decimal(10.0),
     } as any;
 
     // 1. Material: 100g * 0.0956 = 9.56. Scrap 10% -> 10.516
@@ -85,7 +89,7 @@ describe('PricingService', () => {
       printer,
       settings,
       0.5,
-      14
+      14,
     );
 
     expect(result.custo_total).toBeCloseTo(23.7705);

@@ -6,6 +6,6 @@ import { PrismaModule } from '../prisma/prisma.module';
 @Module({
   imports: [PrismaModule],
   controllers: [AssetsController],
-  providers: [AssetsService]
+  providers: [AssetsService],
 })
-export class AssetsModule { }
+export class AssetsModule {}

@@ -7,6 +7,6 @@ import { PricingModule } from '../pricing/pricing.module';
 @Module({
   imports: [PrismaModule, PricingModule],
   controllers: [OrdersController],
-  providers: [OrdersService]
+  providers: [OrdersService],
 })
-export class OrdersModule { }
+export class OrdersModule {}
